@@ -1300,14 +1300,14 @@ function getPageTitle() {
         <sys_created_by>wentao.yang</sys_created_by>
         <sys_created_on>2020-07-01 19:11:16</sys_created_on>
         <sys_id>cbaa78b01b7d101064244375cc4bcbc9</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Knowledge Article Content New</sys_name>
         <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
         <sys_policy/>
         <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
         <sys_update_name>sp_widget_cbaa78b01b7d101064244375cc4bcbc9</sys_update_name>
         <sys_updated_by>wentao.yang</sys_updated_by>
-        <sys_updated_on>2020-07-01 19:11:16</sys_updated_on>
+        <sys_updated_on>2020-07-08 10:29:45</sys_updated_on>
         <template><![CDATA[<div class="kb-article-wrapper">
   <div ng-if="data.versionWarningMessage && c.options.show_version_info != 'false'" class="alert alert-info alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -1325,7 +1325,8 @@ function getPageTitle() {
               <span ng-if="!c.isMobile && data.workflowState">{{data.workflowState}}</span>
             </div>
           </span>
-          <div ng-if="!c.isMobile && !$root.hideFeedbackOptions && c.options.hide_all_actions != 'true'" class="col-md-7 kb-end-buttons">
+          <div ng-if="!c.isMobile && !$root.hideFeedbackOptions && c.options.hide_all_actions != 'true'" class="col-md-7 
+                                                                                                                ">
             <div class="dropdown kb-end-buttons">
               <span class="hidden-sm hidden-xs" ng-if="!data.externalArticle">
                 <a tabindex="0" ng-mouseover="c.handleSubscribeButtonFocus()"
@@ -1340,6 +1341,10 @@ function getPageTitle() {
                   </span>
                 </a>
               </span>
+              
+              <!-- add the favourite button -->
+              <button class="btn btn-default" type="button">Favourite</button>
+              
               <button ng-if="c.showAttachArticle()" class="btn btn-default" type="button" ng-click="c.attachToTask()" aria-label="{{::data.messages.ATTACH_TO_TASK_LABEL}}">{{::data.messages.ATTACH_TO_TASK_LABEL}}</button>
               <button ng-if="c.showActionMenu() && !$root.readOnly" class="btn btn-default dropdown-toggle kb-dropdown-button" type="button" data-toggle="dropdown" aria-label="{{::data.messages.ACTION_MENU}}">
                 <span class="glyphicon glyphicon-option-horizontal kb-action-menu-padding"></span>
