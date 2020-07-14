@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_512628_webwidget_favourite_records" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>number</element>
+            <list_id display_value="x_512628_webwidget_favourite_records" element="NULL" name="x_512628_webwidget_favourite_records" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">d05430ac1bc2901064244375cc4bcb02</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-07-13 10:20:43</sys_created_on>
+            <sys_id>dc5430ac1bc2901064244375cc4bcb03</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-07-13 10:20:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>article_id</element>
+            <list_id display_value="x_512628_webwidget_favourite_records" element="NULL" name="x_512628_webwidget_favourite_records" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">d05430ac1bc2901064244375cc4bcb02</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-07-13 10:20:43</sys_created_on>
+            <sys_id>545430ac1bc2901064244375cc4bcb04</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-07-13 10:20:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>user_id</element>
+            <list_id display_value="x_512628_webwidget_favourite_records" element="NULL" name="x_512628_webwidget_favourite_records" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">d05430ac1bc2901064244375cc4bcb02</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-07-13 10:20:43</sys_created_on>
+            <sys_id>d45430ac1bc2901064244375cc4bcb04</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-07-13 10:20:43</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_512628_webwidget_favourite_records</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2020-07-13 10:20:43</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d05430ac1bc2901064244375cc4bcb02</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_512628_webwidget_favourite_records</sys_name>
+            <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
+            <sys_update_name>sys_ui_list_x_512628_webwidget_favourite_records_null</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2020-07-13 10:20:43</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>
