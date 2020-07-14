@@ -20,6 +20,16 @@
 
 .list-group-item:last-child {
 	margin-bottom: 10px;
+}
+
+.kb-star-on {
+  color: $fav-star-color !important;
+  text-shadow: $fav-star-outline;
+}
+
+.kb-star-off {
+  color: $fav-star-color-off !important;
+  text-shadow: $fav-star-outline;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -97,40 +107,76 @@
 			continue;
 
 		var a = {};
-		$sp.getRecordValues(a, z, 'short_description,sys_view_count,sys_id,published');
+		$sp.getRecordValues(a, z, 'author,short_description,sys_view_count,sys_id,published,rating');
 		data.articles.push(a);
 	}
 })();
+
+data.showStarRating = showStarRating();
+
+function showStarRating() {
+	if (options.show_star_rating == "Yes")
+		return true;
+
+	if (options.show_star_rating == "No")
+		return false;
+
+	// check gating property for all rating options
+	if (gs.getProperty("glide.knowman.show_rating_options", "true") != "true")
+		return false;
+
+	// does user have the right role?
+	if (!gs.hasRole(gs.getProperty("glide.knowman.show_rating_options.roles")))
+		return false;
+
+	// check specific property for stars
+	if (gs.getProperty("glide.knowman.show_star_rating", "true") != "true")
+		return false;
+		
+	// does user have the right role?
+	return gs.hasRole(gs.getProperty("glide.knowman.show_star_rating.roles"));
+}
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>wentao.yang</sys_created_by>
         <sys_created_on>2020-07-14 14:55:30</sys_created_on>
         <sys_id>07cc3e341b06d01064244375cc4bcb2b</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>KB favourite list</sys_name>
         <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
         <sys_policy/>
         <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
         <sys_update_name>sp_widget_07cc3e341b06d01064244375cc4bcb2b</sys_update_name>
         <sys_updated_by>wentao.yang</sys_updated_by>
-        <sys_updated_on>2020-07-14 17:04:02</sys_updated_on>
+        <sys_updated_on>2020-07-14 17:41:35</sys_updated_on>
         <template><![CDATA[<sp-panel ng-if="data.articles.length > 0" >
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="a in data.articles">
-      <a href="?id=kb_article&sys_id={{::a.sys_id}}">{{::a.short_description}}</a>
+      <a href="?id=kb_article_view_new&sys_id={{::a.sys_id}}">{{::a.short_description}}</a>
       <div>
+<!--         <span class="author pad-right" ng-if="a.author">
+          <glyph sn-char="user" class="pad-right" aria-hidden="true"/>
+          ${Authored by {{::a.author}}}
+        </span> -->
         <span ng-if="a.sys_view_count == 1" class="views pad-right">
+          <!-- <span class="pad-right">&#8226;</span>  -->
           <glyph sn-char="eye-open" class="pad-right" />
           ${{{::a.sys_view_count}} View}
         </span>
         <span ng-if="a.sys_view_count > 1" class="views pad-right">
+          <!-- <span class="pad-right">&#8226;</span>  -->
           <glyph sn-char="eye-open" class="pad-right" />
           ${{{::a.sys_view_count}} Views}
         </span>
-        <span ng-if="false" class="published pad-right">
-          <span ng-if="a.sys_view_count > 0" class="pad-right">&#8226;</span> <glyph sn-char="calendar" class="pad-right" />
+        <span class="published pad-right">
+          <span class="pad-right" aria-hidden="true">&#8226;</span> <glyph sn-char="calendar" class="pad-right" aria-hidden="true" />
           <sn-day-ago date="a.published"/>
+        </span>
+        <span ng-if="data.showStarRating && a.rating">
+          <span class="pad-right">&#8226;</span>
+          <span class="sr-only">Article rating - {{::a.rating}}</span>
+          <uib-rating sp-rating ng-model="::a.rating" max="5" readonly="true" aria-hidden="true" state-on="'fa fa-star kb-star-on'" state-off="'fa fa-star kb-star-off'" />
         </span>
       </div>
     </li>
