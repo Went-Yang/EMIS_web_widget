@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>wentao.yang</sys_created_by>
+        <sys_created_on>2020-07-12 18:59:40</sys_created_on>
+        <sys_id>5081add41b0e501064244375cc4bcb2b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_512628_webwidget_favourite_records.x_512628_webwidget.favourite_records_user</sys_name>
+        <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
+        <sys_security_acl display_value="x_512628_webwidget_favourite_records">9481add41b0e501064244375cc4bcb27</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_5081add41b0e501064244375cc4bcb2b</sys_update_name>
+        <sys_updated_by>wentao.yang</sys_updated_by>
+        <sys_updated_on>2020-07-12 18:59:40</sys_updated_on>
+        <sys_user_role display_value="x_512628_webwidget.favourite_records_user" name="x_512628_webwidget.favourite_records_user">3f71add41b0e501064244375cc4bcb02</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

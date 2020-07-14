@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>2</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">83baf8b01b7d101064244375cc4bcb60</sp_column>
+        <sp_widget display_value="Knowledge Article Content">a47ea1cb0b9432004ce28ffe15673a5b</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>wentao.yang</sys_created_by>
+        <sys_created_on>2020-07-01 19:11:32</sys_created_on>
+        <sys_id>03baf8b01b7d101064244375cc4bcb62</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
+        <sys_update_name>sp_instance_03baf8b01b7d101064244375cc4bcb62</sys_update_name>
+        <sys_updated_by>wentao.yang</sys_updated_by>
+        <sys_updated_on>2020-07-08 10:27:53</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=03baf8b01b7d101064244375cc4bcb62"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="web_widget">3469f4701b7d101064244375cc4bcb19</application>
+        <file_path/>
+        <instance_id>3883e135dbef1f087e55d5b0cf9619f0</instance_id>
+        <instance_name>dev67438</instance_name>
+        <name>sp_instance_03baf8b01b7d101064244375cc4bcb62</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance"><sp_instance action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><glyph/><id/><order>2</order><roles/><short_description/><size>md</size><sp_column display_value="1">83baf8b01b7d101064244375cc4bcb60</sp_column><sp_widget display_value="Knowledge Article Content">a47ea1cb0b9432004ce28ffe15673a5b</sp_widget><sys_class_name>sp_instance</sys_class_name><sys_created_by>wentao.yang</sys_created_by><sys_created_on>2020-07-01 19:11:32</sys_created_on><sys_id>03baf8b01b7d101064244375cc4bcb62</sys_id><sys_mod_count>2</sys_mod_count><sys_name/><sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package><sys_policy/><sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope><sys_update_name>sp_instance_03baf8b01b7d101064244375cc4bcb62</sys_update_name><sys_updated_by>wentao.yang</sys_updated_by><sys_updated_on>2020-07-08 10:27:53</sys_updated_on><title/><url/><widget_parameters/></sp_instance><sys_translated_text action="delete_multiple" query="documentkey=03baf8b01b7d101064244375cc4bcb62"/></record_update>]]></payload>
+        <payload_hash>-618394498</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>0dc503f61b71941064244375cc4bcbd2</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>wentao.yang</sys_created_by>
+        <sys_created_on>2020-07-08 10:27:53</sys_created_on>
+        <sys_id>2c06cbf61b71941064244375cc4bcbf7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1732df7aec80000001</sys_recorded_at>
+        <sys_updated_by>wentao.yang</sys_updated_by>
+        <sys_updated_on>2020-07-08 10:27:53</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>a406cbf640719410b721da04520772f7</update_guid>
+        <update_guid_history>a406cbf640719410b721da04520772f7:-618394498,81c5c7f6667194109f0a1b1f87da1123:0,6bb547f6157194108a6c069c7b42219e:204573706,33730f761e719410fe9b2f98ba188b68:-618394498,2cdd6ab6173194104080a306cbf461f6:1335509535,96673e7eb131941039ddaac3db9e972e:0,fc67ba7e63319410291ca6fcec2620d2:204573706,0c31f67ac53194106daffef90ed1c733:-618394498,9b7e26f6c6319410e4f55ba08524e028:1335509535,930eeeb6ec3194108f4d294c649c0c4f:0,f50eaeb642319410b3580d6bf80f703a:-2136489557,2cdd6ab6173194104080a306cbf461f6:1335509535,737da6b670319410eed7ae32cc23975d:0,ee10a2f6aa7d5410e3dacc41499b78f6:221527940,fbb65efa233d541043d57b41cb3bda94:1335509535,1ef596faf73d541055af53c1f95e8654:0,9a95deba3a3d54100c1c9a6834315a58:175232387,13051abac33d541072dcac381a178d88:0,40f192b6763d5410e59a20a0b17c9005:635797855,5891da76183d5410d9273d611a524bd6:1722668765,e981da76bd3d5410e6b5b8577c204f25:-618394498,78a20538cb7d1010f12bc27bb25b7d5b:0,58728df4447d101058fe125b939834fa:2073891370,17de78747c7d101032ee21e56e90a74e:0,e79e3474af7d101055e97c77289ac20e:738359734,07baf8b0807d1010c359f75192aece63:-1005553728</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">e9160bf61b71941064244375cc4bcb0b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>wentao.yang</sys_created_by>
+        <sys_created_on>2020-07-08 10:28:14</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>02e865222f9b432e80f501994dc9c624</sys_id>
+        <sys_metadata>03baf8b01b7d101064244375cc4bcb62</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
+        <sys_scope_delete display_value="">d8f7799af3034a3eaf696985ba19f6e1</sys_scope_delete>
+        <sys_update_name>sp_instance_03baf8b01b7d101064244375cc4bcb62</sys_update_name>
+        <sys_update_version display_value="sp_instance_03baf8b01b7d101064244375cc4bcb62">2c06cbf61b71941064244375cc4bcbf7</sys_update_version>
+        <sys_updated_by>wentao.yang</sys_updated_by>
+        <sys_updated_on>2020-07-08 10:28:14</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -395,7 +395,38 @@
 	c.imgModalClose = function(){
 		c.imageInstance.close();
 	}
+	
+	
+	/*
+	* Start of the modification
+	*/
+	
+	// search records to initialise c.data.fav
+	c.searchFav = function(){
+		c.data.action = 'searchFav';
+		c.server.update().then(function(){
+			c.data.action = undefined;
+		});
+	}
+	
+	// add function to implement the favourite feature
+	c.handleFav = function(){
+		// c.data.articleID = $scope.data.article_sys_id;
+		
+		// if not fav, add; if fav, remove
+		c.data.action = (!c.data.fav) ? "addFav" : "removeFav";
+		
+		// update page
+		c.server.update().then(function(){
+			c.data.action = undefined;
+		});
+	}
 
+	/*
+	* End of the modification
+	*/
+	
+	
 	$scope.$on("$destroy", taskPopUp);
 
 }
@@ -966,7 +997,78 @@ if(input){
 		var kAjax = new global.KnowledgeAjax();
 		data.articleContent = kAjax.kbAttachArticleImpl(input.value);
 	}
+	
+	
+	/*
+	* Start of the modification
+	*/
+	
+	// favourite features
+	if (input.action == 'searchFav'){
+		data.article_id = input.article_sys_id;
+		data.user_id = gs.getUserID();
+		
+		var gr = new GlideRecord('x_512628_webwidget_favourite_records');
+		
+		gr.initialize();
+		gr.addQuery('user_id', data.user_id);
+		gr.addQuery('article_id', data.article_id);
+		gr.query();
+		
+		data.fav = (gr.hasNext()) ? true : false;
+	}
+	
+	// add favourite
+	if(input.action == 'addFav'){
+		data.article_id = input.article_sys_id;
+		data.user_id = gs.getUserID();
+		
+		var gr = new GlideRecord('x_512628_webwidget_favourite_records');
+		
+		// double check, 
+		gr.initialize();
+		gr.addQuery('user_id', data.user_id);
+		gr.addQuery('article_id', data.article_id);
+		gr.query();
+		
+		// if exists, directly change to true
+		// if not exists, insert the record
+		if(gr.hasNext()){
+			data.fav = true;
+		}else{
+			gr.initialize();
+			gr.user_id = data.user_id;
+			gr.article_id = data.article_id;
+			var res = gr.insert();
+			data.fav = (res !== null) ? true : false;
+		}
+	}
+	
+	// remove favourite
+	if (input.action == 'removeFav'){
+		data.article_id = input.article_sys_id;
+		data.user_id = gs.getUserID();
+		
+		var gr = new GlideRecord('x_512628_webwidget_favourite_records');
+		
+		// double check, 
+		gr.initialize();
+		gr.addQuery('user_id', data.user_id);
+		gr.addQuery('article_id', data.article_id);
+		gr.query();
+		
+		if (gr.hasNext()){
+			gr.deleteMultiple();
+		}		
+		data.fav = false;
+		
+	}
 }
+
+	/*
+	* End of the modification
+	*/
+
 
 function buildParams(){
 	var params = {};
@@ -1300,14 +1402,14 @@ function getPageTitle() {
         <sys_created_by>wentao.yang</sys_created_by>
         <sys_created_on>2020-07-01 19:11:16</sys_created_on>
         <sys_id>cbaa78b01b7d101064244375cc4bcbc9</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>51</sys_mod_count>
         <sys_name>Knowledge Article Content New</sys_name>
         <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
         <sys_policy/>
         <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
         <sys_update_name>sp_widget_cbaa78b01b7d101064244375cc4bcbc9</sys_update_name>
         <sys_updated_by>wentao.yang</sys_updated_by>
-        <sys_updated_on>2020-07-01 19:11:16</sys_updated_on>
+        <sys_updated_on>2020-07-12 20:05:39</sys_updated_on>
         <template><![CDATA[<div class="kb-article-wrapper">
   <div ng-if="data.versionWarningMessage && c.options.show_version_info != 'false'" class="alert alert-info alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -1325,7 +1427,8 @@ function getPageTitle() {
               <span ng-if="!c.isMobile && data.workflowState">{{data.workflowState}}</span>
             </div>
           </span>
-          <div ng-if="!c.isMobile && !$root.hideFeedbackOptions && c.options.hide_all_actions != 'true'" class="col-md-7 kb-end-buttons">
+          <div ng-if="!c.isMobile && !$root.hideFeedbackOptions && c.options.hide_all_actions != 'true'" class="col-md-7 
+                                                                                                                ">
             <div class="dropdown kb-end-buttons">
               <span class="hidden-sm hidden-xs" ng-if="!data.externalArticle">
                 <a tabindex="0" ng-mouseover="c.handleSubscribeButtonFocus()"
@@ -1340,6 +1443,18 @@ function getPageTitle() {
                   </span>
                 </a>
               </span>
+              
+              
+              <!-- Start of the modification -->
+              
+              <!-- add the favourite button -->
+              <!-- search fav records when initilise, add/remove fav records when click -->
+              <button class="btn btn-default" type="button" ng-init="c.searchFav()" ng-click="c.handleFav()">{{c.data.fav ? "Unfavourite" : "Favourite"}}</button>
+              
+              
+              <!-- End of the modification -->
+        
+              
               <button ng-if="c.showAttachArticle()" class="btn btn-default" type="button" ng-click="c.attachToTask()" aria-label="{{::data.messages.ATTACH_TO_TASK_LABEL}}">{{::data.messages.ATTACH_TO_TASK_LABEL}}</button>
               <button ng-if="c.showActionMenu() && !$root.readOnly" class="btn btn-default dropdown-toggle kb-dropdown-button" type="button" data-toggle="dropdown" aria-label="{{::data.messages.ACTION_MENU}}">
                 <span class="glyphicon glyphicon-option-horizontal kb-action-menu-padding"></span>
