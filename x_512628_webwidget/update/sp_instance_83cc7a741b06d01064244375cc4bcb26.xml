@@ -11,7 +11,7 @@
         <short_description/>
         <size>md</size>
         <sp_column display_value="1">03cc7a741b06d01064244375cc4bcb24</sp_column>
-        <sp_widget display_value="KB favourite list">07cc3e341b06d01064244375cc4bcb2b</sp_widget>
+        <sp_widget display_value="My Favourite Articles">07cc3e341b06d01064244375cc4bcb2b</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>wentao.yang</sys_created_by>
         <sys_created_on>2020-07-14 14:55:30</sys_created_on>
