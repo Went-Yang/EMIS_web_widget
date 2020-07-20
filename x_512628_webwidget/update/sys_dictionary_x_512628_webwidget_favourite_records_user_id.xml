@@ -53,7 +53,7 @@
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>wentao.yang</sys_created_by>
         <sys_created_on>2020-07-12 18:59:39</sys_created_on>
-        <sys_id>4b04cebd1bce101064244375cc4bcbc4</sys_id>
+        <sys_id>e82f867a1b4ad01064244375cc4bcba4</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>User ID</sys_name>
         <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
@@ -61,7 +61,7 @@
         <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
         <sys_update_name>sys_dictionary_x_512628_webwidget_favourite_records_user_id</sys_update_name>
         <sys_updated_by>wentao.yang</sys_updated_by>
-        <sys_updated_on>2020-07-17 13:21:30</sys_updated_on>
+        <sys_updated_on>2020-07-20 16:43:51</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

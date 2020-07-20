@@ -1030,10 +1030,11 @@ if(input){
 		if(gr.hasNext()){
 			data.fav = true;
 		}else{
-			gr.initialize();
-			gr.user_id = data.user_id;
-			gr.article_id = data.article_id;
-			var res = gr.insert();
+			var i_gr = new GlideRecord('x_512628_webwidget_favourite_records');
+			i_gr.initialize();
+			i_gr.user_id = data.user_id;
+			i_gr.article_id = data.article_id;
+			var res = i_gr.insert();
 			data.fav = (res !== null) ? true : false;
 		}
 	}
@@ -1392,14 +1393,14 @@ function getPageTitle() {
         <sys_created_by>wentao.yang</sys_created_by>
         <sys_created_on>2020-07-01 19:11:16</sys_created_on>
         <sys_id>cbaa78b01b7d101064244375cc4bcbc9</sys_id>
-        <sys_mod_count>57</sys_mod_count>
+        <sys_mod_count>58</sys_mod_count>
         <sys_name>Knowledge Article Content New</sys_name>
         <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
         <sys_policy/>
         <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
         <sys_update_name>sp_widget_cbaa78b01b7d101064244375cc4bcbc9</sys_update_name>
         <sys_updated_by>wentao.yang</sys_updated_by>
-        <sys_updated_on>2020-07-20 15:16:04</sys_updated_on>
+        <sys_updated_on>2020-07-20 20:24:00</sys_updated_on>
         <template><![CDATA[<div class="kb-article-wrapper">
   <div ng-if="data.versionWarningMessage && c.options.show_version_info != 'false'" class="alert alert-info alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
