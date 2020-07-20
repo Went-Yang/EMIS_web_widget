@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">03cc7a741b06d01064244375cc4bcb24</sp_column>
+        <sp_widget display_value="My Favourite Articles">07cc3e341b06d01064244375cc4bcb2b</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>wentao.yang</sys_created_by>
+        <sys_created_on>2020-07-14 14:55:30</sys_created_on>
+        <sys_id>83cc7a741b06d01064244375cc4bcb26</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
+        <sys_update_name>sp_instance_83cc7a741b06d01064244375cc4bcb26</sys_update_name>
+        <sys_updated_by>wentao.yang</sys_updated_by>
+        <sys_updated_on>2020-07-14 14:55:30</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=83cc7a741b06d01064244375cc4bcb26"/>
+</record_update>
