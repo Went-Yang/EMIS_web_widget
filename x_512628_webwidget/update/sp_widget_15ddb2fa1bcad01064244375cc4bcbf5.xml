@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {  /* widget controller */  var c = this;}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.transclude:last-child {
+  padding-bottom: 10px;
+}
+
+.list-group {
+ 	margin-bottom: 0px; 
+}
+
+.list-group-item {
+    padding: 0;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 0px;
+}
+
+.list-group-item:last-child {
+	margin-bottom: 10px;
+}
+
+.kb-star-on {
+  color: $fav-star-color !important;
+  text-shadow: $fav-star-outline;
+}
+
+.kb-star-off {
+  color: $fav-star-color-off !important;
+  text-shadow: $fav-star-outline;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>title,color</field_list>
+        <has_preview>true</has_preview>
+        <id>most_favourite_articles</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Most Favourite Articles</name>
+        <option_schema>[{"name":"max_number","section":"Presentation","label":"Max number","type":"integer"},{"displayValue":"Knowledge Category","name":"kb_category","section":"Data","label":"KB category","type":"reference","value":"kb_category","ed":{"reference":"kb_category"}}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[/*
+* the widget is cloned from the most viewed widget (also similar to the top rated widget)
+* the query is changed to display a user's favourite articles
+*/
+(function() {
+	data.articles = [];
+	options.title = options.title || gs.getMessage("Most Favourite Articles");
+	
+	var z;
+	var knowledge_bases;
+	var sys_id = $sp.getParameter('sys_id');
+	var kb_id = $sp.getParameter('kb_id');
+	var gr = new GlideRecord("kb_knowledge");
+	
+	var foundArticle = false;
+	if (sys_id) { // sys_id specified, try to find an article by sys_id or number
+		gr.addQuery("sys_id", sys_id).addOrCondition("number", sys_id);
+		gr.query();
+		if (gr.next() && gr.canRead()) {
+			// When sys_id matches a kb_record, get KB of the article
+			knowledge_bases = String(gr.getValue('kb_knowledge_base'));
+			foundArticle = true;
+		}
+	}
+	
+	if (!foundArticle) { /* For all other pages this code will get executed. Used on knowledge home page.*/
+		/*If KB is selected display most viewed articles only from that KB*/
+		if (kb_id != null)
+			knowledge_bases = String(kb_id);
+		else {
+			 /*Get all knowledge bases associated with Portal*/
+			knowledge_bases = String($sp.getKnowledgeBases());
+		}
+	}
+	
+	// can't use notNil() method
+	// if (GlideStringUtil.notNil(knowledge_bases))
+	//  z = $sp.getAllKBRecords(knowledge_bases);
+	// else //If there are no accessible KBs for logged in user
+	//  return;
+	
+	var ga = new GlideAggregate('x_512628_webwidget_favourite_records');
+	ga.addAggregate("COUNT", "article_id");
+	ga.orderByAggregate("COUNT", "article_id");
+	ga.setLimit(5);
+	ga.query();
+	
+	while(ga.next()){
+		z = $sp.getAllKBRecords(knowledge_bases);
+		z.addQuery('sys_id', ga.article_id);
+		z.query();
+		if(z.next() && z.canRead()){
+			var a = {};
+			$sp.getRecordValues(a, z, 'short_description,sys_view_count,sys_id,published,rating');
+			data.articles.push(a);
+		}
+	}
+	
+	data.showStarRating = showStarRating();
+
+	function showStarRating() {
+		if (options.show_star_rating == "Yes")
+			return true;
+
+		if (options.show_star_rating == "No")
+			return false;
+
+		// check gating property for all rating options
+		if (gs.getProperty("glide.knowman.show_rating_options", "true") != "true")
+			return false;
+
+		// does user have the right role?
+		if (!gs.hasRole(gs.getProperty("glide.knowman.show_rating_options.roles")))
+			return false;
+
+		// check specific property for stars
+		if (gs.getProperty("glide.knowman.show_star_rating", "true") != "true")
+			return false;
+			
+		// does user have the right role?
+		return gs.hasRole(gs.getProperty("glide.knowman.show_star_rating.roles"));
+	}
+})();
+
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>wentao.yang</sys_created_by>
+        <sys_created_on>2020-07-20 20:07:53</sys_created_on>
+        <sys_id>15ddb2fa1bcad01064244375cc4bcbf5</sys_id>
+        <sys_mod_count>82</sys_mod_count>
+        <sys_name>Most Favourite Articles</sys_name>
+        <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
+        <sys_update_name>sp_widget_15ddb2fa1bcad01064244375cc4bcbf5</sys_update_name>
+        <sys_updated_by>wentao.yang</sys_updated_by>
+        <sys_updated_on>2020-07-21 01:47:57</sys_updated_on>
+        <template><![CDATA[<sp-panel ng-if="data.articles.length > 0" >
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="a in data.articles">
+      <a href="?id=kb_article_view_new&sys_id={{::a.sys_id}}">{{::a.short_description}}</a>
+      <div>
+           
+<!--         <span class="author pad-right" ng-if="a.author">
+          <glyph sn-char="user" class="pad-right" aria-hidden="true"/>
+          ${Authored by {{::a.author}}}
+        </span>  -->
+       
+        <span ng-if="a.sys_view_count == 1" class="views pad-right">
+          <!-- <span class="pad-right">&#8226;</span>  -->
+          <glyph sn-char="eye-open" class="pad-right" />
+          ${{{::a.sys_view_count}} View}
+        </span>
+        <span ng-if="a.sys_view_count > 1" class="views pad-right">
+          <!-- <span class="pad-right">&#8226;</span>  -->
+          <glyph sn-char="eye-open" class="pad-right" />
+          ${{{::a.sys_view_count}} Views}
+        </span>
+        <span class="published pad-right">
+          <span class="pad-right" aria-hidden="true">&#8226;</span> <glyph sn-char="calendar" class="pad-right" aria-hidden="true" />
+          <sn-day-ago date="a.published"/>
+        </span>
+        <span ng-if="data.showStarRating && a.rating">
+          <span class="pad-right">&#8226;</span>
+          <span class="sr-only">Article rating - {{::a.rating}}</span>
+          <uib-rating sp-rating ng-model="::a.rating" max="5" readonly="true" aria-hidden="true" state-on="'fa fa-star kb-star-on'" state-off="'fa fa-star kb-star-off'" />
+        </span>
+      </div>
+    </li>
+  </ul>
+</sp-panel>]]></template>
+    </sp_widget>
+</record_update>
