@@ -36,7 +36,7 @@
         <description/>
         <docs/>
         <field_list>title,color</field_list>
-        <has_preview>false</has_preview>
+        <has_preview>true</has_preview>
         <id>my-favourite-articles</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
@@ -92,16 +92,18 @@
     fav_gr.addQuery('user_id', gs.getUserID());
     fav_gr.query();
 
-    // add ids to form a string (required by GlideRecord.addQuery() API)
-    article_ids = '';
-
+    // add ids to an array 
+    var arr = [];
     while(fav_gr.next()){
-        article_ids = (article_ids == '') ? (article_ids + fav_gr.article_id) : (article_ids + ',' + fav_gr.article_id);
+        arr.push(''+fav_gr.article_id);
     }
 
+    // build query string (required by GlideRecord.addQuery() API)
+    var qs = arr.join(',');
+
     // find the user's favourite articles
-    if (article_ids != '') {
-        z.addQuery('sys_id', 'IN', article_ids);
+    if (qs != '') {
+        z.addQuery('sys_id', 'IN', qs);
         z.query();
     }
 
@@ -147,14 +149,14 @@
         <sys_created_by>wentao.yang</sys_created_by>
         <sys_created_on>2020-07-14 14:55:30</sys_created_on>
         <sys_id>07cc3e341b06d01064244375cc4bcb2b</sys_id>
-        <sys_mod_count>39</sys_mod_count>
+        <sys_mod_count>42</sys_mod_count>
         <sys_name>My Favourite Articles</sys_name>
         <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
         <sys_policy/>
         <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
         <sys_update_name>sp_widget_07cc3e341b06d01064244375cc4bcb2b</sys_update_name>
         <sys_updated_by>wentao.yang</sys_updated_by>
-        <sys_updated_on>2020-07-20 14:47:06</sys_updated_on>
+        <sys_updated_on>2020-07-21 21:13:15</sys_updated_on>
         <template><![CDATA[<sp-panel ng-if="data.articles.length > 0" >
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="a in data.articles">
