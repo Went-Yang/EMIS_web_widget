@@ -85,23 +85,44 @@
 	// else //If there are no accessible KBs for logged in user
 	//  return;
 	
+	// get article records in order from the fav table
 	var ga = new GlideAggregate('x_512628_webwidget_favourite_records');
 	ga.addAggregate("COUNT", "article_id");
 	ga.orderByAggregate("COUNT", "article_id");
 	ga.setLimit(5);
 	ga.query();
 	
+	// get article id in order
+	var id_arr = [];
 	while(ga.next()){
-		z = $sp.getAllKBRecords(knowledge_bases);
-		z.addQuery('sys_id', ga.article_id);
-		z.query();
-		if(z.next() && z.canRead()){
-			var a = {};
-			$sp.getRecordValues(a, z, 'short_description,sys_view_count,sys_id,published,rating');
-			data.articles.push(a);
-		}
+		id_arr.push('' + ga.article_id);
 	}
-	
+
+	// build string for query
+	var qs = id_arr.join(',');
+
+	// query data from z
+	// only need to query once
+	z = $sp.getAllKBRecords(knowledge_bases);
+	z.addQuery('sys_id', 'IN', qs);
+	z.query();
+
+	// save object in order into an array
+	var article_arr = new Array(id_arr.length);
+	while(z.next()){
+		if (!z.canRead())
+			continue;
+		
+		var a = {};
+		$sp.getRecordValues(a, z, 'short_description,sys_view_count,sys_id,published,rating');
+		article_arr[id_arr.indexOf(a.sys_id)] = a;
+	}
+
+	// traverse the array and push elements into data.articles
+	for (var i = 0; i < article_arr.length; i++) {
+		data.articles.push(article_arr[i]);
+	}
+
 	data.showStarRating = showStarRating();
 
 	function showStarRating() {
@@ -135,14 +156,14 @@
         <sys_created_by>wentao.yang</sys_created_by>
         <sys_created_on>2020-07-20 20:07:53</sys_created_on>
         <sys_id>15ddb2fa1bcad01064244375cc4bcbf5</sys_id>
-        <sys_mod_count>82</sys_mod_count>
+        <sys_mod_count>90</sys_mod_count>
         <sys_name>Most Favourite Articles</sys_name>
         <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
         <sys_policy/>
         <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
         <sys_update_name>sp_widget_15ddb2fa1bcad01064244375cc4bcbf5</sys_update_name>
         <sys_updated_by>wentao.yang</sys_updated_by>
-        <sys_updated_on>2020-07-21 01:47:57</sys_updated_on>
+        <sys_updated_on>2020-07-21 21:09:40</sys_updated_on>
         <template><![CDATA[<sp-panel ng-if="data.articles.length > 0" >
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="a in data.articles">
