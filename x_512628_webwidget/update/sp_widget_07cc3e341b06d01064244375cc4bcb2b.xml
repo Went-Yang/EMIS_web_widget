@@ -95,7 +95,7 @@
     // add ids to an array 
     var arr = [];
     while(fav_gr.next()){
-        arr.push(''+fav_gr.article_id);
+        arr.push('' + fav_gr.article_id);
     }
 
     // build query string (required by GlideRecord.addQuery() API)
@@ -149,41 +149,42 @@
         <sys_created_by>wentao.yang</sys_created_by>
         <sys_created_on>2020-07-14 14:55:30</sys_created_on>
         <sys_id>07cc3e341b06d01064244375cc4bcb2b</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_name>My Favourite Articles</sys_name>
         <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
         <sys_policy/>
         <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
         <sys_update_name>sp_widget_07cc3e341b06d01064244375cc4bcb2b</sys_update_name>
         <sys_updated_by>wentao.yang</sys_updated_by>
-        <sys_updated_on>2020-07-21 21:13:15</sys_updated_on>
+        <sys_updated_on>2020-07-22 14:56:48</sys_updated_on>
         <template><![CDATA[<sp-panel ng-if="data.articles.length > 0" >
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="a in data.articles">
       <a href="?id=kb_article_view_new&sys_id={{::a.sys_id}}">{{::a.short_description}}</a>
       <div>
-           
-<!--         <span class="author pad-right" ng-if="a.author">
+        
+        <!-- since it's scoped app, it cannot access author name (only author id) -->
+        <!--
+        <span class="author pad-right" ng-if="a.author">
           <glyph sn-char="user" class="pad-right" aria-hidden="true"/>
           ${Authored by {{::a.author}}}
-        </span>  -->
-       
+        </span>  
+       -->
+        
         <span ng-if="a.sys_view_count == 1" class="views pad-right">
-          <!-- <span class="pad-right">&#8226;</span>  -->
           <glyph sn-char="eye-open" class="pad-right" />
           ${{{::a.sys_view_count}} View}
         </span>
         <span ng-if="a.sys_view_count > 1" class="views pad-right">
-          <!-- <span class="pad-right">&#8226;</span>  -->
           <glyph sn-char="eye-open" class="pad-right" />
           ${{{::a.sys_view_count}} Views}
         </span>
         <span class="published pad-right">
-          <span class="pad-right" aria-hidden="true">&#8226;</span> <glyph sn-char="calendar" class="pad-right" aria-hidden="true" />
+          <span class="pad-right" aria-hidden="true" ng-if="a.sys_view_count >= 1">&#8226;</span> <glyph sn-char="calendar" class="pad-right" aria-hidden="true" />
           <sn-day-ago date="a.published"/>
         </span>
         <span ng-if="data.showStarRating && a.rating">
-          <span class="pad-right">&#8226;</span>
+          <span class="pad-right" ng-if="a.sys_view_count >= 1 || a.published != null">&#8226;</span>
           <span class="sr-only">Article rating - {{::a.rating}}</span>
           <uib-rating sp-rating ng-model="::a.rating" max="5" readonly="true" aria-hidden="true" state-on="'fa fa-star kb-star-on'" state-off="'fa fa-star kb-star-off'" />
         </span>
