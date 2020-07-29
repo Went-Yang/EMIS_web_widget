@@ -156,14 +156,14 @@
         <sys_created_by>wentao.yang</sys_created_by>
         <sys_created_on>2020-07-20 20:07:53</sys_created_on>
         <sys_id>15ddb2fa1bcad01064244375cc4bcbf5</sys_id>
-        <sys_mod_count>103</sys_mod_count>
+        <sys_mod_count>106</sys_mod_count>
         <sys_name>Most Favourite Articles</sys_name>
         <sys_package display_value="web_widget" source="x_512628_webwidget">3469f4701b7d101064244375cc4bcb19</sys_package>
         <sys_policy/>
         <sys_scope display_value="web_widget">3469f4701b7d101064244375cc4bcb19</sys_scope>
         <sys_update_name>sp_widget_15ddb2fa1bcad01064244375cc4bcbf5</sys_update_name>
         <sys_updated_by>wentao.yang</sys_updated_by>
-        <sys_updated_on>2020-07-22 14:53:45</sys_updated_on>
+        <sys_updated_on>2020-07-29 22:46:31</sys_updated_on>
         <template><![CDATA[<sp-panel ng-if="data.articles.length > 0" >
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="a in data.articles">
@@ -186,10 +186,12 @@
           <glyph sn-char="eye-open" class="pad-right" />
           ${{{::a.sys_view_count}} Views}
         </span>
-        <span class="published pad-right">
-          <span class="pad-right" aria-hidden="true" ng-if="a.sys_view_count >= 1">&#8226;</span> <glyph sn-char="calendar" class="pad-right" aria-hidden="true" />
+        
+        <span class="published pad-right" ng-if="a.sys_view_count >= 1">
+          <span class="pad-right" aria-hidden="true">&#8226;</span> <glyph sn-char="calendar" class="pad-right" aria-hidden="true" />
           <sn-day-ago date="a.published"/>
         </span>
+        
         <span ng-if="data.showStarRating && a.rating">
           <span class="pad-right" ng-if="a.sys_view_count >= 1 || a.published != null">&#8226;</span>
           <span class="sr-only">Article rating - {{::a.rating}}</span>
